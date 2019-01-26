@@ -9,6 +9,7 @@ Wants=network-online.target
 [Service]
 Environment=DAEMON_ARGS=
 Environment=ETCD_NAME=%H
+Environment=ETCD_UNSUPPORTED_ARCH=arm
 Environment=ETCD_DATA_DIR={{ etcd_settings.data_directory }}
 EnvironmentFile=-/etc/default/%p
 StandardOutput=syslog
