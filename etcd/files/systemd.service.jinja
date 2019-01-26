@@ -4,15 +4,12 @@ Documentation=https://github.com/coreos/etcd
 After=network.target
 
 [Service]
-User=root
+User=etcd
 Type=notify
 
 {#- ignore --param bools in environ #}
 {%- for key,value in etcd.service.items() if value not in (False, True,) %}
 Environment='ETCD_{{ key|string|upper }}={{ value or "" }}'
-{%- endfor %}
-{%- for key,value in etcd.etcdctl.items() if value not in (False, True) %}
-Environment='ETCDCTL_{{ key|string|upper }}={{ value or "" }}'
 {%- endfor %}
 
 {#- instead pass --param bools to exec command #}
