@@ -15,7 +15,7 @@ Environment='ETCD_{{ key|string|upper }}={{ value or "" }}'
 
 {% set args = " --auto-tls=" ~ etcd.service.auto_tls ~ " --peer-auto-tls=" ~ etcd.service.peer_auto_tls %}
 
-ExecStart={{ etcd.realhome }}/etcd {{ args|join(' ') }}
+ExecStart={{ etcd.realhome }}/etcd {{ args }}
 Restart=always
 RestartSec=10s
 LimitNOFILE=40000
