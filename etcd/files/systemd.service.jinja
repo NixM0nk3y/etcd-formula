@@ -13,12 +13,6 @@ Environment=ETCD_UNSUPPORTED_ARCH=arm
 Environment='ETCD_{{ key|string|upper }}={{ value or "" }}'
 {%- endfor %}
 
-{#- instead pass --param bools to exec command #}
-{%- set args = [] %}
-{%- for key,value in etcd.service.items() if value in (True,) %}
-{%- do args.append( '--' ~ key ~ '=true' ) %}
-{%- endfor %}
-
 ExecStart={{ etcd.realhome }}/etcd {{ args|join(' ') }}
 Restart=always
 RestartSec=10s
